@@ -1,2 +1,2 @@
 # ServiceFabricPractices
-Service Fabric Practices
+Service Fabric Practices, About Install,Development environment,Deployment,On Premises...
