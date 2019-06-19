@@ -48,6 +48,20 @@ Service fabric 开发环境与生产环境的安装方式是不一样的，在�
 以上方式把全部把所有要群集到一起的服务器最基本的通信等方式配置完成了，这些配置是为安装Service fabric前做准备，接下就是选择其中一台服务器对其进行安装群集Seed节点服务；
 ### 生产环境“安装脚本、脱机安装包”的准备
 群集有二种，一种是One Node(One Seed)，一种Multi Node(Multi Seed)，其中Seed的个数是构成不同级别稳定性的群集必要数, 具体信息请参考 [Service Fabric 群集容量规划](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cluster-capacity "Service Fabric 群集容量规划")；下面我们介绍多台服务器 One Seed 方式的安装；
+#### 对要群集到一起所有服务器进行证书安装
+要使用X509证书保护你未来运行的群集系统，那么就必须在安装Service fabric前先在所有的服务器提前安装所需要的证书，生产环境建议使用三个证书，具体请参考相关文档 [Service fabric安全性](https://docs.azure.cn/zh-cn/service-fabric/service-fabric-best-practices-security)，[证书配置升级](https://docs.azure.cn/zh-cn/service-fabric/service-fabric-cluster-config-upgrade-windows-server) 等相关文档
+- 远程桌面方式：手动连接到每台服务器，然后通过界面引导方式添加
+- 本地客户机管理方式：通过PowerShell远程方式(也可以通过远程桌面进入打开PowerShell)连接到对应用服务器，然后对其执行脚本安全证书
+- 云商管理服务器接口处理：这种方式是利用云商的管理服务器的API接口，一次性进行对所有服务器进行证书安装
+#### 安装One Seed节点群集
+- 下载Service fabric安装脚本和离线安装包
+- 配置安装脚本中的服务器节点地址
+- 执行脚本安装
+    - 用脚本测试目标机器是否配置正确
+    > ` {} `
+    - 执行群集单节点安装
+#### 用X509安全证书方式连接至已安装成功的群集节点
+#### 向已有的One Seed节点群集中添加节点
 ### 使用脚本进行安装
 ### 群集运行测试
 ### 参考资源
