@@ -1,4 +1,4 @@
-# 写在前面
+## 写在前面
 
     我们在开发、使用Service Fabric前必须要先要了解几个问题：
 
@@ -8,6 +8,8 @@ Service fabric 开发环境与生产环境的安装方式是不一样的，在�
 - Windows Web Platform Installer方式
 
     这种有界面安装方式建议在安装好Visual Studio 2019集成开发环境后进行，下载地址是：[MicrosoftAzure-ServiceFabric-CoreSDK](https://webpihandler.azurewebsites.net/web/handlers/webpi.ashx/getinstaller/MicrosoftAzure-ServiceFabric-CoreSDK.appids "MicrosoftAzure-ServiceFabric-CoreSDK.exe")
+    下图是Windows Web Platform Installer安装图
+    ![Web Platform installer](_v_images/O_01.png)
 - PowerShell脚本安装方式
     脚本安装方式安装方式比以上有界面安装方式简单，首先以管理员方式打开PowerShell，然后进行以下简单几个步骤即可完成；
     + 在PowerShell中安装 [Chocolatey](https://chocolatey.org/install "Installing Chocolatey") 环境
@@ -18,10 +20,15 @@ Service fabric 开发环境与生产环境的安装方式是不一样的，在�
     + 安装Service fabric SDK
         >` webpicmd.exe /Install /AcceptEula /SuppressReboot /Products:MicrosoftAzure-ServiceFabric-CoreSDK `
 ### 创建生产环境方式
-生产环境相对于开发环境安装可能更容易一些，但是生产环境有二种模式的集运行与管理方式，一是基于X509证书保护方式运行的群集，另外一种是UnSecure方式下运行的群集，接下来我们分步骤介绍一下基于X509证书保护下的安全群集的安装过程。
+生产环境相对于开发环境安装可能更容易一些，但是生产环境有二种模式的集运行与管理方式，一是基于X509证书保护方式运行的群集，另外一种是UnSecure方式下运行的群集，接下来我们分步骤介绍一下基于X509证书保护下的安全群集的安装过程,基于UnSecure方式的安装过程基本与本文类似，只是不在安装过程中使用到X509证书。
 
-# 基于X509安全证书安装生产群集
-安装前的准备工作
+## 基于X509安全证书安装生产群集
+安装前的准备工作（本文是基于Windows Server 2012以上系列服务器的生产环境安装，也可以把Servie fabric群集同样部署到linux上，这部分会在后续文章中讲解）
 - Windows Server 2019,服务器数量5台(可向国内、国外云服务商购买)
 - 通配符域名证书一个(向正式的安全证书提供商购买)
-- 
+- 把所有服务器放在一个极低网络延迟且在同一个局域网络中
+### 生产服务器系统中各网络服务开启
+### 生产环境“安装脚本、脱机安装包”的准备
+### 使用脚本进行安装
+### 群集运行测试
+### 参考资源
