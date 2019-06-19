@@ -15,7 +15,7 @@ Service fabric 开发环境与生产环境的安装方式是不一样的，在�
     + 在PowerShell中安装 [Chocolatey](https://chocolatey.org/install "Installing Chocolatey") 环境
     
         >` Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1')) `
-    + 安装系统以来的下载工具
+    + 安装系统中使用的下载工具
         >` choco install webpicmd -y `
     + 安装Service fabric SDK
         >` webpicmd.exe /Install /AcceptEula /SuppressReboot /Products:MicrosoftAzure-ServiceFabric-CoreSDK `
