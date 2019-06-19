@@ -3,7 +3,7 @@
     我们在开发、使用Service Fabric前必须要先要了解几个问题：
 
 ### 开发、生产环境的区别
-Service fabric 开发环境与生产环境的安装方式是不一样的，在最初的时候，估计多数人都不会先去认真通读 [Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/ "Service Fabric Documentation") 官方文档，而是在先在网上找一些简化入门的文档，简单读完后就凭借自己的对过往开发、生产环境的安装的经验就马上开始了。但是 Service fabric开发、生产环境的安装与使用并不是跟过往经验一样，一路"Next"就可以配置好的，所以需要大家在上手前，尽量通读熟悉 [Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/ "Service Fabric Documentation") 官方文档后，有一个较熟悉的概览后在进一补动手。开发工具建议选择最新版本的Visual Studio 2019，当前Visual 2015/2017也是可以的，但Service fabric 6.5是最后一个支持Visual studio 2015集成环境开发的版本。
+Service fabric 开发环境与生产环境的安装方式是不一样的，在最初的时候，估计多数人都不会先去认真通读 [Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/ "Service Fabric Documentation") 官方文档，而是在先在网上找一些简化入门的文档，简单读完后就凭借自己的过往开发、生产环境的安装的经验就马上开始了。但是 Service fabric开发、生产环境的安装与使用并不是跟过往经验一样，一路"Next"就可以配置好的，所以需要大家在上手前，尽量通读熟悉 [Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/ "Service Fabric Documentation") 官方文档后，有一个较熟悉的概览后在进一步动手。基于Service fabric服务的大规模应用程序的开发工具建议选择最新版本的Visual Studio 2019，至于Visual studio 2015/2017也是可以的，但Service fabric 6.5是最后一个支持Visual studio 2015集成环境开发的版本。
 ### 安装开发环境的几个种方式
 - Windows Web Platform Installer方式
 
@@ -19,6 +19,8 @@ Service fabric 开发环境与生产环境的安装方式是不一样的，在�
         >` choco install webpicmd -y `
     + 安装Service fabric SDK
         >` webpicmd.exe /Install /AcceptEula /SuppressReboot /Products:MicrosoftAzure-ServiceFabric-CoreSDK `
+        
+开发环境不适用于生产部署，只用于模拟测试一定规模节点的应用程序，最小化模拟上线情景，也用于应用程序在Service fabric中的调试与测试。
 ### 创建生产环境方式
 生产环境相对于开发环境安装可能更容易一些，但是生产环境有二种模式的集运行与管理方式，一是基于X509证书保护方式运行的群集，另外一种是UnSecure方式下运行的群集，接下来我们分步骤介绍一下基于X509证书保护下的安全群集的安装过程,基于UnSecure方式的安装过程基本与本文类似，只是不在安装过程中使用到X509证书。
 
@@ -44,7 +46,7 @@ Service fabric 开发环境与生产环境的安装方式是不一样的，在�
 > `Restart-Service WinRM -Verbose ` 
 以上方式全部把所有要群集到一起的服务器配置完成，接下就是选择其中一台服务器对其进行安装群集Seed节点服务；
 ### 生产环境“安装脚本、脱机安装包”的准备
-群集有二种，一种是One Node(One Seed)，一种Multi Node(Multi Seed)，其中Seed的个数是构成不同级别安全的群集必要数
+群集有二种，一种是One Node(One Seed)，一种Multi Node(Multi Seed)，其中Seed的个数是构成不同级别稳定性的群集必要数, 具体信息请参考 [Service Fabric 群集容量规划](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cluster-capacity "Service Fabric 群集容量规划")；下面我们介绍多台服务器 One Seed 方式的安装；
 ### 使用脚本进行安装
 ### 群集运行测试
 ### 参考资源
