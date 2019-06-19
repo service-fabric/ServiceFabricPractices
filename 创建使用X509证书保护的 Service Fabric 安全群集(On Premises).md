@@ -1,6 +1,6 @@
 ## 写在前面
 
-Service fabric的优势，在网上已经很多介绍了，我这里就不详细介绍了，如果你是初学者，恰好又看到这篇文章，那么，请你先移步到这里[Service Fabric 分布式系统平台](https://docs.microsoft.com/zh-cn/azure/service-fabric/)，先了解Service fabric的一些基本情。我们在开发、使用Service Fabric前必须要先要了解以下几个问题：
+Service fabric的优势，在网上已经有很多介绍了，我这里就不详细介绍了，如果你是初学者，恰好又看到这篇文章，那么，请你先移步到这里 [Service Fabric 分布式系统平台](https://docs.microsoft.com/zh-cn/azure/service-fabric/)，先了解Service fabric的一些基本情。我们在开发、使用Service Fabric前必须要先要了解以下几个问题：
 
 ### 开发、生产环境的区别
 Service fabric 开发环境与生产环境的安装方式是不一样的，在最初的时候，估计多数人都不会先去认真通读, [Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/ "Service Fabric Documentation") 官方文档，而是在先在网上找一些简化入门的文档，简单读完后就凭借自己的过往开发、生产环境的安装的经验就马上开始了。但是 Service fabric开发、生产环境的安装与使用并不是跟过往经验一样，一路"Next"就可以配置好的，所以需要大家在上手前，尽量通读熟悉 [Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/ "Service Fabric Documentation") 官方文档后，有一个较熟悉的概览后在进一步动手。基于Service fabric服务的大规模应用程序的开发工具建议选择最新版本的Visual Studio 2019，至于Visual studio 2015/2017也是可以的，但Service fabric 6.5是最后一个支持Visual studio 2015集成环境开发的版本。
@@ -44,6 +44,7 @@ Service fabric 开发环境与生产环境的安装方式是不一样的，在�
 > `Enable-PSRemoting -Force -Verbose `
 
 > `Restart-Service WinRM -Verbose ` 
+
 以上方式全部把所有要群集到一起的服务器配置完成，接下就是选择其中一台服务器对其进行安装群集Seed节点服务；
 ### 生产环境“安装脚本、脱机安装包”的准备
 群集有二种，一种是One Node(One Seed)，一种Multi Node(Multi Seed)，其中Seed的个数是构成不同级别稳定性的群集必要数, 具体信息请参考 [Service Fabric 群集容量规划](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cluster-capacity "Service Fabric 群集容量规划")；下面我们介绍多台服务器 One Seed 方式的安装；
