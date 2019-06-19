@@ -45,7 +45,7 @@ Service fabric 开发环境与生产环境的安装方式是不一样的，在�
 
 > `Restart-Service WinRM -Verbose ` 
 
-以上方式全部把所有要群集到一起的服务器配置完成，接下就是选择其中一台服务器对其进行安装群集Seed节点服务；
+以上方式把全部把所有要群集到一起的服务器最基本的通信等方式配置完成了，这些配置是为安装Service fabric前做准备，接下就是选择其中一台服务器对其进行安装群集Seed节点服务；
 ### 生产环境“安装脚本、脱机安装包”的准备
 群集有二种，一种是One Node(One Seed)，一种Multi Node(Multi Seed)，其中Seed的个数是构成不同级别稳定性的群集必要数, 具体信息请参考 [Service Fabric 群集容量规划](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cluster-capacity "Service Fabric 群集容量规划")；下面我们介绍多台服务器 One Seed 方式的安装；
 ### 使用脚本进行安装
