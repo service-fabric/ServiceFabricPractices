@@ -28,7 +28,23 @@ Service fabric 开发环境与生产环境的安装方式是不一样的，在�
 - 通配符域名证书一个(向正式的安全证书提供商购买)
 - 把所有服务器放在一个极低网络延迟且在同一个局域网络中
 ### 生产服务器系统中各网络服务开启
+在准备好的所有服务器中，通过远程桌面方式（也可以通过云商API方式）开启以下服务,以下脚本命令在服务器中执行
+> ` Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False `
+
+> ` Restart-Service RasAuto -Verbose `
+
+> ` Restart-Service RpcLocator -Verbose `
+
+> ` Restart-Service RemoteRegistry -Verbose `
+
+> ` Set-Service -Name RemoteRegistry -StartupType Automatic -Status Running -Verbose `
+
+> `Enable-PSRemoting -Force -Verbose `
+
+> `Restart-Service WinRM -Verbose ` 
+以上方式全部把所有要群集到一起的服务器配置完成，接下就是选择其中一台服务器对其进行安装群集Seed节点服务；
 ### 生产环境“安装脚本、脱机安装包”的准备
+群集有二种，一种是One Node(One Seed)，一种Multi Node(Multi Seed)，其中Seed的个数是构成不同级别安全的群集必要数
 ### 使用脚本进行安装
 ### 群集运行测试
 ### 参考资源
