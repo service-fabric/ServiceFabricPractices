@@ -14,7 +14,7 @@ Service fabric 开发环境与生产环境的安装方式是不一样的，在�
     脚本安装方式安装方式比以上有界面安装方式简单，首先以管理员方式打开PowerShell，然后进行以下简单几个步骤即可完成；
     + 在PowerShell中安装 [Chocolatey](https://chocolatey.org/install "Installing Chocolatey") 环境
     
-        >` Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1')) `
+        > ` Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1')) `
     + 安装系统中使用的下载工具
         >` choco install webpicmd -y `
     + 安装Service fabric SDK
@@ -31,20 +31,13 @@ Service fabric 开发环境与生产环境的安装方式是不一样的，在�
 - 把所有服务器放在一个极低网络延迟且在同一个局域网络中
 ### 生产服务器系统中各网络服务开启
 在准备好的所有服务器中，通过远程桌面方式（也可以通过云商API方式）开启以下服务,以下脚本命令在服务器中执行
-> ` Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False `
-
-> ` Restart-Service RasAuto -Verbose `
-
-> ` Restart-Service RpcLocator -Verbose `
-
-> ` Restart-Service RemoteRegistry -Verbose `
-
-> ` Set-Service -Name RemoteRegistry -StartupType Automatic -Status Running -Verbose `
-
-> `Enable-PSRemoting -Force -Verbose `
-
-> `Restart-Service WinRM -Verbose ` 
-
+> ` Set-NetFirewallProfile -Profile Domain,Public,Private -Enabled False `  
+` Restart-Service RasAuto -Verbose `  
+` Restart-Service RpcLocator -Verbose `  
+` Restart-Service RemoteRegistry -Verbose `  
+` Set-Service -Name RemoteRegistry -StartupType Automatic -Status Running -Verbose `  
+`Enable-PSRemoting -Force -Verbose `  
+`Restart-Service WinRM -Verbose `   
 以上方式把全部把所有要群集到一起的服务器最基本的通信等方式配置完成了，这些配置是为安装Service fabric前做准备，接下就是选择其中一台服务器对其进行安装群集Seed节点服务；
 ### 生产环境“安装脚本、脱机安装包”的准备
 群集有二种，一种是One Node(One Seed)，一种Multi Node(Multi Seed)，其中Seed的个数是构成不同级别稳定性的群集必要数, 具体信息请参考 [Service Fabric 群集容量规划](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cluster-capacity "Service Fabric 群集容量规划")；下面我们介绍多台服务器 One Seed 方式的安装；
@@ -55,9 +48,23 @@ Service fabric 开发环境与生产环境的安装方式是不一样的，在�
 - 云商管理服务器接口处理：这种方式是利用云商的管理服务器的API接口，一次性进行对所有服务器进行证书安装
 #### 安装One Seed节点群集
 - 下载Service fabric安装脚本和离线安装包
+    - 在PowerShell中下载安装脚本和离线安装包  
+    >` Import-Module BitsTransfer `  
+    ` Start-BitsTransfer -Source https://download.microsoft.com/download/8/3/6/836E3E99-A300-4714-8278-96BC3E8B5528/6.5.639.9590/Microsoft.Azure.ServiceFabric.WindowsServer.6.5.639.9590.zip -Destination c:\ -TransferType Download `  
+    ` Start-BitsTransfer -Source https://download.microsoft.com/download/B/0/B/B0BCCAC5-65AA-4BE3-AB13-D5FF5890F4B5/6.5.639.9590/MicrosoftAzureServiceFabric.6.5.639.9590.cab -Destination c:\ -TransferType Download `  
+    ` Expand-Archive .\Microsoft.Azure.ServiceFabric.WindowsServer.6.5.639.9590.zip -DestinationPath c:\sf `  
+    
+    上面解压到c:\sf目录里的文件就是在Windows下使用安装生产或者测试环境的便捷脚本，具体目录中每个文件的作用请参考：[Contents of Service Fabric Standalone package for Windows Server](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cluster-standalone-package-contents)  
+    我们使用到的几个安装脚本文件分别是：  
+    - 测试群集服务器与群集安装配置文件正确性：TestConfiguration.ps1
+    - 基于X509证书下的安全群集One Seed节点配置文件：ClusterConfig.Windows.X509.OneNode.json  
+    - 创建群集脚本：CreateServiceFabricCluster.ps1
+    我们只需要以上二个PowerShell和一个配置文件即可进行生产群集安装。
+   　
 - 配置安装脚本中的服务器节点地址
+    - One Node 节点配置，配置：ClusterConfig.Windows.X509.OneNode.json 文件中的服务器地址与证书信息
 - 执行脚本安装
-    - 用脚本测试目标机器是否配置正确
+    - 用脚本测试目标机器是否配置正确  
     > ` {} `
     - 执行群集单节点安装
 #### 用X509安全证书方式连接至已安装成功的群集节点
