@@ -1,6 +1,8 @@
 ## 写在前面
 
-Service fabric的优势，在网上已经有很多介绍了，我这里就不详细介绍了，如果你是初学者，恰好又看到这篇文章，那么，请你先移步到这里 [Service Fabric 分布式系统平台](https://docs.microsoft.com/zh-cn/azure/service-fabric/)，先了解Service fabric的一些基本情。我们在开发、使用Service Fabric前必须要先要了解以下几个问题：
+我在写这篇实践文档前得到了许多Service fabric技术大牛技术指点与支持，如微软的：wu pin、社区技术大牛：朱永光等，非常感谢他们的指点。
+
+Service fabric的优势，在网上已经有很多介绍了，我这里就不详细介绍了，如果你是初学者，恰好又看到这篇文章，那么，请你先移步到这里 [Service Fabric 分布式系统平台](https://docs.microsoft.com/zh-cn/azure/service-fabric/)，先了解Service fabric的一些基本情。我们在开发、使用Service fabric前必须要先要了解以下几个问题：
 
 ### 开发、生产环境的区别
 Service fabric 开发环境与生产环境的安装方式是不一样的，在最初的时候，估计多数人都不会先去认真通读, [Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/ "Service Fabric Documentation") 官方文档，而是在先在网上找一些简化入门的文档，简单读完后就凭借自己的过往开发、生产环境的安装的经验就马上开始了。但是 Service fabric开发、生产环境的安装与使用并不是跟过往经验一样，一路"Next"就可以配置好的，所以需要大家在上手前，尽量通读熟悉 [Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/ "Service Fabric Documentation") 官方文档后，有一个较熟悉的概览后在进一步动手。基于Service fabric服务的大规模应用程序的开发工具建议选择最新版本的Visual Studio 2019，至于Visual studio 2015/2017也是可以的，但Service fabric 6.5是最后一个支持Visual studio 2015集成环境开发的版本。
@@ -25,7 +27,7 @@ Service fabric 开发环境与生产环境的安装方式是不一样的，在�
 生产环境相对于开发环境安装可能更容易一些，但是生产环境有二种模式的集运行与管理方式，一是基于X509证书保护方式运行的群集，另外一种是UnSecure方式下运行的群集，接下来我们分步骤介绍一下基于X509证书保护下的安全群集的安装过程,基于UnSecure方式的安装过程基本与本文类似，只是不在安装过程中使用到X509证书。
 
 ## 基于X509安全证书安装生产群集
-安装前的准备工作（本文是基于Windows Server 2012以上系列服务器的生产环境安装，也可以把Servie fabric群集同样部署到linux上，这部分会在后续文章中讲解）
+安装前的准备工作(本文是基于Windows Server 2012以上系列服务器的生产环境安装，也可以把Servie fabric群集同样部署到linux上，这部分会在后续文章中讲解)(这部分在部署实践时得到了微软Wu Ping的支持)
 - Windows Server 2019,服务器数量5台(可向国内、国外云服务商购买)
 - 通配符域名证书一个(向正式的安全证书提供商购买)
 - 把所有服务器放在一个极低网络延迟且在同一个局域网络中
