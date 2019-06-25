@@ -75,7 +75,8 @@ Service fabric 开发环境与生产环境的安装方式是不一样的，在�
     - 用脚本测试目标机器是否配置正确（切换到安装脚本目录）  
     > ` .\TestConfiguration.ps1 -ClusterConfigFilePath .\ClusterConfig.X509.OneNode.json -FabricRuntimePackagePath .\6.5.cab `
     - 执行群集单节点安装  
-    > ` .\CreateServiceFabricCluster.ps1 -ClusterConfigFilePath .\ClusterConfig.X509.OneNode.json -FabricRuntimePackagePath .\6.5.cab `
+    > ` .\CreateServiceFabricCluster.ps1 -ClusterConfigFilePath .\ClusterConfig.X509.OneNode.json -FabricRuntimePackagePath .\6.5.cab `  
+    
 #### 用X509安全证书方式连接至已安装成功的群集节点
 #### 向已有的One Seed节点群集中添加节点
 ### 使用脚本进行安装
