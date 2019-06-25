@@ -11,7 +11,7 @@ Service fabric 开发环境与生产环境的安装方式是不一样的，在�
 
     这种有界面安装方式建议在安装好Visual Studio 2019集成开发环境后进行，下载地址是：[MicrosoftAzure-ServiceFabric-CoreSDK](https://webpihandler.azurewebsites.net/web/handlers/webpi.ashx/getinstaller/MicrosoftAzure-ServiceFabric-CoreSDK.appids "MicrosoftAzure-ServiceFabric-CoreSDK.exe")
     下图是Windows Web Platform Installer安装图
-    ![Web Platform installer](_v_images/O_01.png)
+    ![Web Platform installer](_v_images/_05_01.png)
 - PowerShell脚本安装方式
     脚本安装方式安装方式比以上有界面安装方式简单，首先以管理员方式打开PowerShell，然后进行以下简单几个步骤即可完成；
     + 在PowerShell中安装 [Chocolatey](https://chocolatey.org/install "Installing Chocolatey") 环境
@@ -64,11 +64,18 @@ Service fabric 开发环境与生产环境的安装方式是不一样的，在�
     我们只需要以上二个PowerShell和一个配置文件即可进行生产群集安装。
    　
 - 配置安装脚本中的服务器节点地址
-    - One Node 节点配置，配置：ClusterConfig.Windows.X509.OneNode.json 文件中的服务器地址与证书信息
+    - One Node 节点配置，配置：                 
+        - 证书信息获取  
+        红色部分就是获取到安装在服务器上的证书信息  
+        ![通过脚本方式获取服务器上的证书信息](_v_images/_05_02.png)
+        - 安装脚本配置  
+        ClusterConfig.Windows.X509.OneNode.json 文件中的服务器地址与证书信息，配置文件中的证书信息我们采用“证书指纹”配置方式进行群集安装脚本进行参数配置,下图中示意了部分配置;  
+        ![安装脚本中进行证书信息配置](_v_images/_05_03.png)
 - 执行脚本安装
-    - 用脚本测试目标机器是否配置正确  
-    > ` {} `
-    - 执行群集单节点安装
+    - 用脚本测试目标机器是否配置正确（切换到安装脚本目录）  
+    > ` .\TestConfiguration.ps1 -ClusterConfigFilePath .\ClusterConfig.X509.OneNode.json -FabricRuntimePackagePath .\6.5.cab `
+    - 执行群集单节点安装  
+    > ` .\CreateServiceFabricCluster.ps1 -ClusterConfigFilePath .\ClusterConfig.X509.OneNode.json -FabricRuntimePackagePath .\6.5.cab `
 #### 用X509安全证书方式连接至已安装成功的群集节点
 #### 向已有的One Seed节点群集中添加节点
 ### 使用脚本进行安装
