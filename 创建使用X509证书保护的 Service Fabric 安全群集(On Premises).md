@@ -1,6 +1,6 @@
 ## 写在前面
 
-我在写这篇实践文档前得到了许多Service fabric技术大牛技术指点与支持，如微软的：wu.ping@microsoft.com、社区技术大牛：朱永光等，非常感谢他们的指点。
+我在写这篇实践文档前得到了许多Service fabric技术大牛技术指点与支持，如微软的：wu.ping@microsoft.com、社区技术大牛：朱永光等，非常感谢他们的指点,此文是github首发，如有问题请联系我：chenzuo@hotmail.com。
 
 Service fabric的优势，在网上已经有很多介绍了，我这里就不详细介绍了，如果你是初学者，恰好又看到这篇文章，那么，请你先移步到这里 [Service Fabric 分布式系统平台](https://docs.microsoft.com/zh-cn/azure/service-fabric/)，先了解Service fabric的一些基本情。我们在开发、使用Service fabric前必须要先要了解以下几个问题：
 
