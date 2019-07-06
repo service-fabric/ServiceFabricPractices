@@ -82,3 +82,4 @@ Service fabric 开发环境与生产环境的安装方式是不一样的，在�
 ### 使用脚本进行安装
 ### 群集运行测试
 ### 参考资源
+更多.NET Core下的一些基础知识请移步[这里](https://github.com/chenzuo/dotnet-core-practices)学习;
